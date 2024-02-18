@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:server": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -20,9 +21,10 @@
     "json-server": "^1.0.0-alpha.23",
     "lucide-react": "^0.331.0",
     "next": "14.1.0",
-    "plotly.js-dist-min": "^2.29.1",
+    "plotly.js": "^2.29.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-plotly.js": "^2.6.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },
