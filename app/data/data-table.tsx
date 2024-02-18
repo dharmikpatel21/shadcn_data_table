@@ -96,6 +96,9 @@ export function DataTable<TData, TValue>({
       x: selectedNames,
       y: selectedScores,
       type: "bar",
+      marker: {
+        color: "rgb(86,85,87)",
+      },
     },
   ];
 
@@ -103,7 +106,7 @@ export function DataTable<TData, TValue>({
     return <div>something went wrong....</div>;
   }
   return (
-    <div className="grid grid-cols-2 overflow-hidden p-2">
+    <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 p-2">
       <div className="flex flex-col gap-4">
         <div className="flex items-center py-4 gap-2">
           <Input
@@ -272,24 +275,26 @@ export function DataTable<TData, TValue>({
           </div>
         </div>
       </div>
-      <div className="flex">
-        <Plot
-          data={graphData}
-          layout={{
-            width: "100%",
-            height: "100%",
-            title: "Results",
-            xaxis: {
-              title: "Names",
-              showgrid: false,
-              zeroline: false,
-            },
-            yaxis: {
-              title: "Scores",
-              showline: false,
-            },
-          }}
-        />
+      <div className="grid justify-center">
+        {selectedData.length > 0 ? (
+          <Plot
+            className="w-fit aspect-square"
+            data={graphData}
+            layout={{
+              title: "Results",
+              xaxis: {
+                title: "Names",
+              },
+              yaxis: {
+                title: "Scores",
+              },
+            }}
+          />
+        ) : (
+          <div className="flex justify-center items-center text-rose-500">
+            Please select values to show on graph
+          </div>
+        )}
       </div>
     </div>
   );

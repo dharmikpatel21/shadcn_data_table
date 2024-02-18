@@ -23,6 +23,9 @@ export type Payment = {
   age: number;
 };
 
+let initialRender = true;
+const initialSelectedValues = ["1", "2", "3"];
+
 export const columns: ColumnDef<Payment>[] = [
   {
     id: " ",
@@ -36,13 +39,33 @@ export const columns: ColumnDef<Payment>[] = [
         aria-label="Select all"
       />
     ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
+    cell: ({ row }) => {
+      if (initialRender && initialSelectedValues.includes(row.id)) {
+        row.toggleSelected(true);
+        if (
+          (row.id === "1" && row.getIsSelected() === true) ||
+          (row.id === "2" && row.getIsSelected() === true)
+        ) {
+          initialRender = false;
+        }
+
+        return (
+          <Checkbox
+            checked={true}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="Select row"
+          />
+        );
+      } else {
+        return (
+          <Checkbox
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="Select row"
+          />
+        );
+      }
+    },
     enableSorting: false,
     enableHiding: false,
   },
